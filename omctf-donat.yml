@@ -1,0 +1,28 @@
+version: '2'
+services:
+    donat:
+        build:
+              context: ./
+              dockerfile: donat/Dockerfile
+        container_name: "donat"
+        image: omctf-donat:latest
+        ports:
+            - 31415:31415
+        links:
+            - omctf-mongo
+        depends_on:
+            - omctf-mongo
+    omctf-mongo:
+        build:
+              context: ./
+              dockerfile: mongo/Dockerfile
+        container_name: "omctf-mongo"
+        image: dhermanns/rpi-mongo:latest
+        environment:
+            - MONGO_DATA_DIR=/data/db
+            - MONGO_LOG_DIR=/dev/null
+        volumes:
+            - .data/db:/data/db
+        ports:
+            - 27017:27017
+        command: /opt/mongodb/bin/mongod --smallfiles --logpath=/dev/null # --quiet

